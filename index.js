@@ -19,6 +19,11 @@ getTodosButton.addEventListener("click",() => {
     console.log("Clicked");
 })
 
+// Shorthand to write eventlisteners element.onclick
+getTodosButton.onclick = () => {
+    console.log("Clicked shorthand");
+}
+
 
 
 console.log("Welcome Here")
