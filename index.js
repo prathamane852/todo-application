@@ -1,5 +1,33 @@
 // adding a events inside DOM
 
+// start working on buttons
+let savebutton = document.getElementById("save-button");
+let input_bar = document.getElementById("input-bar-id");
+
+input_bar.addEventListener("keyup",()=> {
+    let inputtext = input_bar.value;
+
+
+    if (inputtext.length == 0){
+        if (savebutton.classList.contains("disabled")) return;
+        savebutton.classList.add('disabled');
+    }
+    else if (savebutton.classList.contains("disabled")) {
+        savebutton.classList.remove("disabled")
+    }
+})
+
+
+savebutton.addEventListener("click", ()=> {
+    let todotext = input_bar.value;
+    if(todotext.length==0){
+        return;
+    }
+    addtodo(todotext);
+    todotext.value='';
+
+})
+
 let todoDataSection = document.getElementById('todo-data');
 function addtodo(todoData) {
     let rowDiv= document.createElement('div')
@@ -11,6 +39,17 @@ function addtodo(todoData) {
     let deleteButton = document.createElement('button')
     let finishedButton = document.createElement('button')
     let hr=  document.createElement('hr');
+
+    // Adding classes
+    rowDiv.classList.add('row')
+    todoItem.classList.add("todo-item", "d-flex","flex-row","justify-content-between", "align-items-center");
+    todoNumber.classList.add("todo-no");
+    todoDetail.classList.add("todo-detail","text-muted")
+    todoStatus.classList.add("todo-detail","text-muted")
+    todoActions.classList.add("todo-actions","d-flex","justify-content-start","gap-2");
+    deleteButton.classList.add("btn","btn-danger");
+    finishedButton.classList.add("btn", "btn-success");
+
 
     todoNumber.textContent = "1";
     todoDetail.textContent = todoData; // sets the todo text sent from input element
@@ -29,9 +68,7 @@ function addtodo(todoData) {
 
     rowDiv.appendChild(todoItem);
     rowDiv.appendChild(hr);
-
     todoDataSection.appendChild(rowDiv);
-
 }
 
 
